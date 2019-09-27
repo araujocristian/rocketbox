@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import api from '../../services/api';
 
@@ -7,35 +8,50 @@ import styles from './styles';
 
 import logo from '../../asserts/logo.png';
 
-const Main = ({ navigation: { navigate } }) => {
-  const [newBox, setNewBox] = useState('');
-  const handleSignIn = async () => {
-    const response = await api.post('boxes', {
-      title: newBox,
-    });
-
-    navigate('Box');
+class Main extends Component {
+  state = {
+    newBox: '',
   };
 
-  return (
-    <View style={styles.container}>
-      <Image style={styles.logo} source={logo} />
-      <TextInput
-        style={styles.input}
-        placeholder="Crie um box"
-        placeholderTextColor="#999"
-        autoCapitalize="none"
-        autoCorrect={false}
-        underlineColorAndroid="transparent"
-        value={newBox}
-        onChangeText={text => setNewBox(text)}
-      />
+  async componentDidMount() {
+    const box = await AsyncStorage.getItem('@RocketBox:box');
 
-      <TouchableOpacity onPress={handleSignIn} style={styles.button}>
-        <Text style={styles.buttonText}>Criar</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+    if (box) {
+      this.props.navigation.navigate('Box');
+    }
+  }
+
+  handleSignIn = async () => {
+    const response = await api.post('boxes', {
+      title: this.state.newBox,
+    });
+
+    await AsyncStorage.setItem('@RocketBox:box', response.data._id);
+
+    this.props.navigation.navigate('Box');
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Image style={styles.logo} source={logo} />
+        <TextInput
+          style={styles.input}
+          placeholder="Crie um box"
+          placeholderTextColor="#999"
+          autoCapitalize="none"
+          autoCorrect={false}
+          underlineColorAndroid="transparent"
+          value={this.state.newBox}
+          onChangeText={text => this.setState({ newBox: text })}
+        />
+
+        <TouchableOpacity onPress={this.handleSignIn} style={styles.button}>
+          <Text style={styles.buttonText}>Criar</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
 
 export default Main;

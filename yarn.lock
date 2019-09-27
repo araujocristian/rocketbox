@@ -5186,6 +5186,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-file-viewer@1.0.14:
+  version "1.0.14"
+  resolved "http://atf.intranet.bb.com.br:80/artifactory/api/npm/bb-npm-repo/react-native-file-viewer/-/react-native-file-viewer-1.0.14.tgz#a2b8916882dea7de9f6580d70089c3f9ec20364f"
+  integrity sha1-oriRaILep96fZYDXAInD+ewgNk8=
+
 react-native-fs@2.13.3:
   version "2.13.3"
   resolved "http://atf.intranet.bb.com.br:80/artifactory/api/npm/bb-npm-repo/react-native-fs/-/react-native-fs-2.13.3.tgz#a422f0ecd8a093a7e99d8d51ff51440e090a18a8"
@@ -5202,6 +5207,11 @@ react-native-gesture-handler@1.1.0:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
     prop-types "^15.5.10"
+
+react-native-image-picker@0.28.1:
+  version "0.28.1"
+  resolved "http://atf.intranet.bb.com.br:80/artifactory/api/npm/bb-npm-repo/react-native-image-picker/-/react-native-image-picker-0.28.1.tgz#1127460522e0c9741fc62f3d040271d298fb6a6e"
+  integrity sha1-ESdGBSLgyXQfxi89BAJx0pj7am4=
 
 react-native-safe-area-view@^0.13.0:
   version "0.13.2"
